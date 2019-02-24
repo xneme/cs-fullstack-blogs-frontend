@@ -28,7 +28,7 @@ const LoginForm = ({ setUser, setErrorMessage }) => {
   }
 
   return (
-    <div>
+    <div className="loginForm">
       <h2>Log in to application</h2>
       <form onSubmit={handleLogin}>
         <div>
