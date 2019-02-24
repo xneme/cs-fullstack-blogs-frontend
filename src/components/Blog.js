@@ -17,7 +17,7 @@ const Blog = ({ blog, handleLike, handleRemove, user }) => {
 
   if (expanded) {
     return (
-      <div style={blogStyle}>
+      <div className="blog" style={blogStyle}>
         <div onClick={toggleExpanded}>
           {blog.title} - {blog.author}
         </div>
@@ -36,7 +36,7 @@ const Blog = ({ blog, handleLike, handleRemove, user }) => {
     )
   } else {
     return (
-      <div onClick={toggleExpanded} style={blogStyle}>
+      <div className="blog" onClick={toggleExpanded} style={blogStyle}>
         {blog.title} - {blog.author}
       </div>
     )

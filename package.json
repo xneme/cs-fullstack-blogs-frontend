@@ -27,6 +27,8 @@
   ],
   "devDependencies": {
     "eslint-plugin-jest": "^22.3.0",
-    "eslint-plugin-react": "^7.12.4"
+    "eslint-plugin-react": "^7.12.4",
+    "jest-dom": "^3.1.2",
+    "react-testing-library": "^5.9.0"
   }
 }
