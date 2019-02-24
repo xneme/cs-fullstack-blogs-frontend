@@ -1,24 +1,25 @@
-import React, { useState } from 'react'
+import React from 'react'
 import loginService from '../services/login'
 import blogService from '../services/blogs'
+import { useField } from '../hooks'
 
 const LoginForm = ({ setUser, setErrorMessage }) => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const { reset: usernameReset, ...username } = useField('text')
+  const { reset: passwordReset, ...password } = useField('password')
 
   const handleLogin = async (event) => {
     event.preventDefault()
 
     try {
       const user = await loginService.login({
-        username,
-        password
+        username: username.value,
+        password: password.value
       })
 
       window.localStorage.setItem('loggedBlogappUser', JSON.stringify(user))
       blogService.setToken(user.token)
-      setUsername('')
-      setPassword('')
+      usernameReset()
+      passwordReset()
       setUser(user)
     } catch (exception) {
       console.log('error happened:', exception)
@@ -33,21 +34,11 @@ const LoginForm = ({ setUser, setErrorMessage }) => {
       <form onSubmit={handleLogin}>
         <div>
           username
-          <input
-            type="text"
-            value={username}
-            name="Username"
-            onChange={({ target }) => setUsername(target.value)}
-          />
+          <input {...username} />
         </div>
         <div>
           password
-          <input
-            type="password"
-            value={password}
-            name="Password"
-            onChange={({ target }) => setPassword(target.value)}
-          />
+          <input {...password} />
         </div>
         <button type="submit">Login</button>
       </form>
